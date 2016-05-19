@@ -27,3 +27,4 @@ pyx-stamps
 __config__.py
 .DS_Store
 .eggs
+.idea/
