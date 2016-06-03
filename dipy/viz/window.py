@@ -20,6 +20,7 @@ from dipy.utils.optpkg import optional_package
 from dipy import __version__ as dipy_version
 from dipy.utils.six import string_types
 from dipy.viz.actor import Container
+from dipy.viz.gui import UI
 
 
 # import vtk
@@ -51,6 +52,9 @@ class Renderer(vtkRenderer):
     available in ``vtkRenderer`` if necessary.
     """
 
+    def __init__(self):
+        self.ui_list = []
+
     def background(self, color):
         """ Set a background color
         """
@@ -66,6 +70,9 @@ class Renderer(vtkRenderer):
                 self.AddVolume(actor)
             elif isinstance(actor, vtk.vtkActor2D):
                 self.AddActor2D(actor)
+            elif isinstance(actor, UI):
+                self.AddActor(actor.actor)
+                self.ui_list.append(actor)
             else:
                 self.AddActor(actor)
 
