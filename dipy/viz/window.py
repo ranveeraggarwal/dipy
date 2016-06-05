@@ -468,33 +468,33 @@ class ShowManager(object):
         self.iren.SetInteractorStyle(self.style)
         self.iren.SetRenderWindow(self.window)
 
-        def key_press_standard(obj, event):
+        # def key_press_standard(obj, event):
 
-            key = obj.GetKeySym()
-            if key == 's' or key == 'S':
-                print('Saving image...')
-                renderLarge = vtk.vtkRenderLargeImage()
-                if major_version <= 5:
-                    renderLarge.SetInput(ren)
-                else:
-                    renderLarge.SetInput(ren)
-                renderLarge.SetMagnification(png_magnify)
-                renderLarge.Update()
+        #     key = obj.GetKeySym()
+        #     if key == 's' or key == 'S':
+        #         print('Saving image...')
+        #         renderLarge = vtk.vtkRenderLargeImage()
+        #         if major_version <= 5:
+        #             renderLarge.SetInput(ren)
+        #         else:
+        #             renderLarge.SetInput(ren)
+        #         renderLarge.SetMagnification(png_magnify)
+        #         renderLarge.Update()
 
-                file_types = (("PNG file", "*.png"), ("All Files", "*.*"))
-                filepath = save_file_dialog(initial_file='dipy.png',
-                                            default_ext='.png',
-                                            file_types=file_types)
-                if filepath == '':
-                    print('No file was provided in the dialog')
-                else:
-                    writer = vtk.vtkPNGWriter()
-                    writer.SetInputConnection(renderLarge.GetOutputPort())
-                    writer.SetFileName(filepath)
-                    writer.Write()
-                    print('File ' + filepath + ' is saved.')
+        #         file_types = (("PNG file", "*.png"), ("All Files", "*.*"))
+        #         filepath = save_file_dialog(initial_file='dipy.png',
+        #                                     default_ext='.png',
+        #                                     file_types=file_types)
+        #         if filepath == '':
+        #             print('No file was provided in the dialog')
+        #         else:
+        #             writer = vtk.vtkPNGWriter()
+        #             writer.SetInputConnection(renderLarge.GetOutputPort())
+        #             writer.SetFileName(filepath)
+        #             writer.Write()
+        #             print('File ' + filepath + ' is saved.')
 
-        self.iren.AddObserver('KeyPressEvent', key_press_standard)
+        # self.iren.AddObserver('KeyPressEvent', key_press_standard)
 
         self.picker = vtk.vtkCellPicker()
         self.picker.SetTolerance(self.picker_tol)
