@@ -71,8 +71,9 @@ class Renderer(vtkRenderer):
             elif isinstance(actor, vtk.vtkActor2D):
                 self.AddActor2D(actor)
             elif isinstance(actor, UI):
-                self.AddActor(actor.actor)
-                self.ui_list.append(actor)
+                for ui_item in actor.ui_list:
+                    self.AddActor(ui_item.actor)
+                    self.ui_list.append(ui_item)
             else:
                 self.AddActor(actor)
 
