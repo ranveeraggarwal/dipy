@@ -20,7 +20,7 @@ from dipy.utils.optpkg import optional_package
 from dipy import __version__ as dipy_version
 from dipy.utils.six import string_types
 from dipy.viz.actor import Container
-from dipy.viz.gui2d import UI
+from dipy.viz.gui import UI
 
 
 # import vtk
