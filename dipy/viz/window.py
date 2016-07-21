@@ -72,7 +72,12 @@ class Renderer(vtkRenderer):
                 self.AddActor2D(actor)
             elif isinstance(actor, UI):
                 for ui_item in actor.ui_list:
-                    self.AddActor(ui_item.actor)
+                    if ui_item.actor is not None:
+                        self.AddActor(ui_item.actor)
+                    elif ui_item.assembly is not None:
+                        self.AddActor(ui_item.assembly)
+                    else:
+                        pass
                     self.ui_list.append(ui_item)
             else:
                 self.AddActor(actor)
